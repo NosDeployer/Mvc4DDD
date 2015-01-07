@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Mvc4DDD.Administration.ViewModels.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<!--
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>-->
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.XCoord)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YCoord)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpeningHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WWW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KeywordsEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrademarksEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalPhones)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="overflow: visible;">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    Actions <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.CompanyId })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.CompanyId })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })</li>
+                    <!--<li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>-->
+                </ul>
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.XCoord)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YCoord)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpeningHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WWW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KeywordsEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrademarksEn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalPhones)
+        </td>
+
+    </tr>
+}
+
+</table>
