@@ -1,0 +1,60 @@
+﻿@using Mvc4DDD.MVC.EndUserApp.Extensions
+@model IEnumerable<Mvc4DDD.MVC.EndUserApp.ViewModels.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>@String.Format("We have {0} Companies for you!", Model.Count())</h2>
+<br/>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>
+                        Locations
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Select(c => c.Country).Distinct())
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item, "Where", "Companies", new { location = item }, new { })
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>
+                        Categories
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Select(c => new {cat = c.CategoryCode, name = c.CategoryName})
+                    .Distinct()
+                    .ToDictionary(arg => arg.cat, arg => arg.name))
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Value, "What", "Companies",
+                                  new { categoryId = item.Key, categorySeo = item.Value.SeoString() }, new { })
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</div>
+

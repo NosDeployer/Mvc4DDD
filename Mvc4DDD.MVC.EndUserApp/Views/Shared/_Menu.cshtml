@@ -1,0 +1,48 @@
+﻿@using Mvc4DDD.MVC.EndUserApp.Extensions
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink(" Mvc4DDD", "Index", "Companies", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Location
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach (var country in (List<String>)ViewBag.countries) 
+                        { 
+                            <li>@Html.ActionLink(country, "Where", "Companies", new { location = country }, new {})</li>
+                        }
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Categories
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        @foreach (var category in (Dictionary<String, String>)ViewBag.categories)
+                        {
+                            <li>
+                                @Html.ActionLink(category.Value, "What", "Companies", 
+                                        new {categoryId = category.Key, categorySeo = category.Value.SeoString()}, new {})
+                            </li>
+                        }
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

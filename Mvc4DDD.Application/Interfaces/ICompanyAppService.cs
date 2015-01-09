@@ -9,6 +9,8 @@ namespace Mvc4DDD.Application.Interfaces
 {
     public interface ICompanyAppService : IAppServiceBase<Company>
     {
+        IEnumerable<String> GetCountries();
 
+        Dictionary<String, String> GetCategories();
     }
 }

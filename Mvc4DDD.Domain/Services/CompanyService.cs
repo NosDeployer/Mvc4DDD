@@ -18,5 +18,15 @@ namespace Mvc4DDD.Domain.Services
         {
             _companyRepository = companyRepository;
         }
+
+        public IEnumerable<string> GetCountries()
+        {
+            return _companyRepository.GetCountries();
+        }
+
+        public Dictionary<string, string> GetCategories()
+        {
+            return _companyRepository.GetCategories();
+        }
     }
 }

@@ -71,11 +71,11 @@ namespace Mvc4DDD.Administration.App_Start
             kernel.Bind(typeof (IAppServiceBase<>)).To(typeof (AppServiceBase<>));
             kernel.Bind<ICompanyAppService>().To<CompanyAppService>();
 
-            kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
+            kernel.Bind(typeof (IServiceBase<>)).To(typeof (ServiceBase<>));
             kernel.Bind<ICompanyService>().To<CompanyService>();
 
-            kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
-            kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
-        }        
+            kernel.Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
+            kernel.Bind<ICompanyRepository>().To<CompanyRepository>().WithConstructorArgument("conn", "Mvc4DDD");
+        }
     }
 }

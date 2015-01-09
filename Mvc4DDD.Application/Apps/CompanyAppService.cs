@@ -18,5 +18,15 @@ namespace Mvc4DDD.Application.Apps
         {
             _companyService = companyService;
         }
+
+        public IEnumerable<string> GetCountries()
+        {
+            return _companyService.GetCountries();
+        }
+
+        public Dictionary<string, string> GetCategories()
+        {
+            return _companyService.GetCategories();
+        }
     }
 }

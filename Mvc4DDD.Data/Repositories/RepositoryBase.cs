@@ -12,7 +12,12 @@ namespace Mvc4DDD.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-        protected Mvc4DDDContext Db = new Mvc4DDDContext();
+        protected Mvc4DDDContext Db;
+
+        public RepositoryBase(String conn)
+        {
+            Db = new Mvc4DDDContext(conn);
+        } 
 
         public void Add(TEntity obj)
         {

@@ -16,10 +16,10 @@ namespace Mvc4DDD.Data.Context
 {
     public class Mvc4DDDContext : DbContext
     {
-        public Mvc4DDDContext()
-            : base("Mvc4DDD")
+        public Mvc4DDDContext(String conn)
+            : base(conn) //"Mvc4DDD"
         {
-
+            //Data Source=(LocalDb)\\v11.0;AttachDbFilename=\"C:\\Users\\Guto\\Documents\\Visual Studio 2013\\Projects\\Mvc4DDD\\Mvc4DDD.Administration\\App_Data\\Mvc4DDD.mdf\";Initial Catalog=Mvc4DDD;Integrated Security=True
         }
 
         public DbSet<Company> Companies { get; set; }
