@@ -12,6 +12,6 @@ Technical Information:
 + Architecture: DDD (Domain-driven design);
 
 #####// TODO:
-+ [ ] Create the End user interface;
++ [x] Create the End user interface;
 + [ ] Write some comments;
 
