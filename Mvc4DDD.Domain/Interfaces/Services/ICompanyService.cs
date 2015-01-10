@@ -12,5 +12,9 @@ namespace Mvc4DDD.Domain.Interfaces.Services
         IEnumerable<String> GetCountries();
 
         Dictionary<String, String> GetCategories();
+
+        IEnumerable<Company> GetByLocation(String location);
+
+        IEnumerable<Company> GetByCategory(String categoryCode);
     }
 }

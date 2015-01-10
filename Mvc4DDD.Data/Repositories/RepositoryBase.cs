@@ -49,7 +49,7 @@ namespace Mvc4DDD.Data.Repositories
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Db.Dispose();
         }
     }
 }

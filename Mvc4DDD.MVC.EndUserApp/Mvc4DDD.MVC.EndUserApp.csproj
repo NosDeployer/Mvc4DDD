@@ -178,6 +178,7 @@
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Companies\details.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -209,6 +210,8 @@
     <Content Include="Views\Companies\Index.cshtml" />
     <Content Include="Views\Companies\Details.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
+    <Content Include="Views\Companies\Where.cshtml" />
+    <Content Include="Views\Companies\What.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

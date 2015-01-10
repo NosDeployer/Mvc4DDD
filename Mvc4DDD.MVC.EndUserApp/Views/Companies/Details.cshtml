@@ -1,141 +1,144 @@
-﻿@model Mvc4DDD.MVC.EndUserApp.ViewModels.CompanyViewModel
+﻿@using Mvc4DDD.MVC.EndUserApp.Extensions
+@model Mvc4DDD.MVC.EndUserApp.ViewModels.CompanyViewModel
+
+@section scripts
+{
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+    <script type="text/javascript">
+        var companyId = @Html.DisplayFor(model => model.CompanyId);
+    </script>
+
+    @Scripts.Render("~/Scripts/Companies/details.js")
+}
 
 @{
     ViewBag.Title = "Details";
 }
+<br/>
+<br />
 
-<h2>Details</h2>
+<div class="row">
 
-<fieldset>
-    <legend>CompanyViewModel</legend>
+    <fieldset>
+        <legend>Company Details</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.Name)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.Name)</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>Address</h4>
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.City),
+                    @Html.DisplayFor(model => model.Country) - @Html.DisplayFor(model => model.PostalCode)
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.MainPhone)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.MainPhone).ToString().AddHyphenIfEmpty()</p>
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.HouseNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.HouseNumber)
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.Fax)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.Fax).ToString().AddHyphenIfEmpty()</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.EmailAddress)</h4>
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.EmailAddress)
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.WWW)</h4>
+                </p>
+                <p>
+                    <a href="@Html.DisplayFor(model => model.WWW).ToString().GetUri()" target="_blank">
+                        @Html.DisplayFor(model => model.WWW).ToString().GetUri()
+                    </a>
+                </p>
+                
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostalCode)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostalCode)
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.AdditionalPhones)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.AdditionalPhones).ToString().AddHyphenIfEmpty()</p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.OpeningHours)</h4>
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.OpeningHours).ToString().AddHyphenIfEmpty()
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.CategoryName)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.CategoryName)</p>
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.City)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.KeywordsEn)</h4>
+                </p>
+                <p>@Html.DisplayFor(model => model.KeywordsEn).ToString().AddHyphenIfEmpty()</p>
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Country)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Country)
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.DescriptionEn)</h4>
+                </p>
+                <p>@WebUtility.HtmlDecode(Html.DisplayFor(model => model.DescriptionEn).ToString().AddHyphenIfEmpty())</p>
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.XCoord)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.XCoord)
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <h4>@Html.DisplayNameFor(model => model.TrademarksEn)</h4>
+                </p>
+                <p>@WebUtility.HtmlDecode(Html.DisplayFor(model => model.TrademarksEn).ToString().AddHyphenIfEmpty())</p>
+            </div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.YCoord)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.YCoord)
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center">
+                    <button id="mapButton" type="button" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+                        Click here to find the Company on Google Maps (Ajax Request)
+                    </button>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="googleMap" class="center-block" style="width:1000px;height:500px; display: none;"></div>
+        </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.MainPhone)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.MainPhone)
-    </div>
+    </fieldset>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Fax)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Fax)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.AdditionalPhones)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.AdditionalPhones)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.OpeningHours)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.OpeningHours)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EmailAddress)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EmailAddress)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.WWW)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.WWW)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CategoryCode)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CategoryCode)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CategoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CategoryName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.DescriptionEn)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DescriptionEn)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.KeywordsEn)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.KeywordsEn)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.TrademarksEn)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TrademarksEn)
-    </div>
-</fieldset>
-<p>
-    <!--@Html.ActionLink("Edit", "Edit", new { id=Model.CompanyId }) |
-    @Html.ActionLink("Back to List", "Index")-->
-</p>
+</div>

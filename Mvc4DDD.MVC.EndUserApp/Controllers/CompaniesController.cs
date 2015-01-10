@@ -52,16 +52,43 @@ namespace Mvc4DDD.MVC.EndUserApp.Controllers
             return View(comp);
         }
 
+        /// <summary>
+        /// It's receiving the original name because the database doesn't 
+        /// have an ID for countries and find by SEO String on database does not
+        /// have a good performance.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public ActionResult Where(String location)
         {
-            
-            return View();
+            var comp = Mapper.Map<IEnumerable<Company>, IEnumerable<CompanyViewModel>>(_companyApp.GetByLocation(location));
+
+            return View(comp);
         }
 
         public ActionResult What(String categoryId, String categorySeo)
         {
+            var comp = Mapper.Map<IEnumerable<Company>, IEnumerable<CompanyViewModel>>(_companyApp.GetByCategory(categoryId));
 
-            return View();
+            // Redirect to proper name
+            if (!categorySeo.Equals(comp.FirstOrDefault().CategoryName.SeoString()))
+                return RedirectToActionPermanent("What", new
+                {
+                    categoryId = categoryId,
+                    categorySeo = comp.FirstOrDefault().CategoryName.SeoString()
+                });
+
+            return View(comp);
+        }
+
+        [HttpPost]
+        public JsonResult GetCoords(int id)
+        {
+            /* This method is not useful, because the data is already on the page,
+             * but I would like to test the Ajax request.
+             */
+            var comp = Mapper.Map<Company, CompanyViewModel>(_companyApp.GetById(id));
+            return Json(new { ok = true, xcoord = comp.XCoord, ycoord = comp.YCoord });
         }
 
         //
@@ -70,7 +97,7 @@ namespace Mvc4DDD.MVC.EndUserApp.Controllers
        /* public ActionResult Details(int id)
         {
             return View();
-        }*/
+        }
 
         //
         // GET: /Companies/Create
@@ -148,6 +175,6 @@ namespace Mvc4DDD.MVC.EndUserApp.Controllers
             {
                 return View();
             }
-        }
+        }*/
     }
 }

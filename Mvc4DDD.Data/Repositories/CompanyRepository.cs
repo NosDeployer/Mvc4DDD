@@ -26,5 +26,15 @@ namespace Mvc4DDD.Data.Repositories
                 .Distinct()
                 .ToDictionary(arg => arg.Category, arg => arg.Name);
         }
+
+        public IEnumerable<Company> GetByLocation(string location)
+        {
+            return Db.Companies.Where(c => c.Country.Equals(location)).ToList();
+        }
+
+        public IEnumerable<Company> GetByCategory(string categoryCode)
+        {
+            return Db.Companies.Where(c => c.CategoryCode.Equals(categoryCode));
+        }
     }
 }

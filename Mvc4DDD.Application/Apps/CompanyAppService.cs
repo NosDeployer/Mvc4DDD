@@ -28,5 +28,15 @@ namespace Mvc4DDD.Application.Apps
         {
             return _companyService.GetCategories();
         }
+
+        public IEnumerable<Company> GetByLocation(string location)
+        {
+            return _companyService.GetByLocation(location);
+        }
+
+        public IEnumerable<Company> GetByCategory(string categoryCode)
+        {
+            return _companyService.GetByCategory(categoryCode);
+        }
     }
 }

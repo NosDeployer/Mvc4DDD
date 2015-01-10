@@ -1,0 +1,30 @@
+﻿@using Mvc4DDD.MVC.EndUserApp.Extensions
+@model IEnumerable<Mvc4DDD.MVC.EndUserApp.ViewModels.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Where";
+}
+
+<h2>Where</h2>
+
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>Details</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <th>
+                @Html.ActionLink("Details", "Details", new {id = item.CompanyId, seoName = item.Name.SeoString()})
+            </th>
+        </tr>
+    }
+
+</table>

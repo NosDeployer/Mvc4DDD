@@ -1,0 +1,48 @@
+﻿function showMap(xcoord, ycoord) {
+    var myCenter = new google.maps.LatLng(xcoord, ycoord);
+
+    var mapProp = {
+        center: myCenter,
+        scrollwheel: false,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    var marker = new google.maps.Marker({
+        position: myCenter,
+    });
+
+    marker.setMap(map);
+}
+
+$(document).ready(function () {
+
+    $.ajaxSetup({
+        cache: false
+    });
+
+    $('#mapButton').click(function () {
+
+        $('#mapButton').prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url: "/Companies/GetCoords",
+            data: { id: companyId },
+            success: function (ret) {
+                if (ret.ok) {
+                    $('#googleMap').slideDown({
+                        complete: function () {
+                            showMap(ret.xcoord, ret.ycoord);
+                            $('#mapButton').prop("disabled", false);
+                        }
+                    });
+                } else {
+                    alert("Sorry! An error occurred.");
+                }
+            }
+
+        });
+
+    });
+});

@@ -10,6 +10,20 @@ namespace Mvc4DDD.MVC.EndUserApp.Extensions
 {
     public static class StringExtensions
     {
+
+        public static String AddHyphenIfEmpty(this String s)
+        {
+            if (String.IsNullOrWhiteSpace(s)) return "-";
+            return s;
+        }
+
+        public static String GetUri(this string s)
+        {
+            if (String.IsNullOrWhiteSpace(s)) return "";
+
+            return new UriBuilder(s).Uri.ToString();
+        }
+
         public static string SeoString(this string text)
         {
             if (string.IsNullOrWhiteSpace(text))

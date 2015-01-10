@@ -28,5 +28,15 @@ namespace Mvc4DDD.Domain.Services
         {
             return _companyRepository.GetCategories();
         }
+
+        public IEnumerable<Company> GetByLocation(string location)
+        {
+            return _companyRepository.GetByLocation(location);
+        }
+
+        public IEnumerable<Company> GetByCategory(string categoryCode)
+        {
+            return _companyRepository.GetByCategory(categoryCode);
+        }
     }
 }
