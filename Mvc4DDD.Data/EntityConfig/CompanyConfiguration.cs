@@ -10,6 +10,9 @@ namespace Mvc4DDD.Data.EntityConfig
 {
     public class CompanyConfiguration : EntityTypeConfiguration<Company>
     {
+        /// <summary>
+        /// Configure the Entities
+        /// </summary>
         public CompanyConfiguration()
         {
             HasKey(c => c.CompanyId);

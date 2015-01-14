@@ -19,16 +19,18 @@ namespace Mvc4DDD.Data.Context
         public Mvc4DDDContext(String conn)
             : base(conn) //"Mvc4DDD"
         {
-            //Data Source=(LocalDb)\\v11.0;AttachDbFilename=\"C:\\Users\\Guto\\Documents\\Visual Studio 2013\\Projects\\Mvc4DDD\\Mvc4DDD.Administration\\App_Data\\Mvc4DDD.mdf\";Initial Catalog=Mvc4DDD;Integrated Security=True
+            // The default connection String (Mvc4DDD) is saved on Mvc4DDD.Administration Web.config.
         }
 
         public DbSet<Company> Companies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Removing some dangerous conventions.
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
+            // Changing the convention for String types.
             modelBuilder.Properties<String>()
                 .Configure(p => p.HasMaxLength(1024));
 
@@ -36,6 +38,7 @@ namespace Mvc4DDD.Data.Context
 
             /*************/
 
+            // Save AdditionalPhones as a JSON object 
            /* modelBuilder.ComplexType<AdditionalPhonesList>()
                 .Property(p => p.Serialized)
                 .HasColumnName("AdditionalPhones");*/

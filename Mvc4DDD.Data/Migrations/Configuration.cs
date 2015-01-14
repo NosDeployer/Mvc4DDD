@@ -15,6 +15,7 @@ namespace Mvc4DDD.Data.Migrations
 
         protected override void Seed(Mvc4DDD.Data.Context.Mvc4DDDContext context)
         {
+            // To run the Seed method: Update-Database -Verbose
             
             /*
              new Company

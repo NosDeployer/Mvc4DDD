@@ -10,13 +10,22 @@ namespace Mvc4DDD.MVC.EndUserApp.Extensions
 {
     public static class StringExtensions
     {
-
+        /// <summary>
+        /// Add Hyphen if String is empty.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static String AddHyphenIfEmpty(this String s)
         {
             if (String.IsNullOrWhiteSpace(s)) return "-";
             return s;
         }
 
+        /// <summary>
+        /// Build an URI.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static String GetUri(this string s)
         {
             if (String.IsNullOrWhiteSpace(s)) return "";
@@ -24,6 +33,12 @@ namespace Mvc4DDD.MVC.EndUserApp.Extensions
             return new UriBuilder(s).Uri.ToString();
         }
 
+
+        /// <summary>
+        /// Format a string to be SEO friendly.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static string SeoString(this string text)
         {
             if (string.IsNullOrWhiteSpace(text))

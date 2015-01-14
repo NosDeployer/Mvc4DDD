@@ -1,9 +1,13 @@
+using System.Web.Http;
+using System.Web.Http.Dependencies;
 using Mvc4DDD.Application.Apps;
 using Mvc4DDD.Application.Interfaces;
 using Mvc4DDD.Domain.Interfaces.Repositories;
 using Mvc4DDD.Domain.Interfaces.Services;
 using Mvc4DDD.Domain.Services;
 using Mvc4DDD.Data.Repositories;
+using Ninject.Syntax;
+using Ninject.Web.Mvc;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Mvc4DDD.Administration.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Mvc4DDD.Administration.App_Start.NinjectWebCommon), "Stop")]
@@ -53,6 +57,11 @@ namespace Mvc4DDD.Administration.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                // Install our Ninject-based IDependencyResolver into the Web API config
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
+                
                 return kernel;
             }
             catch
@@ -76,6 +85,61 @@ namespace Mvc4DDD.Administration.App_Start
 
             kernel.Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
             kernel.Bind<ICompanyRepository>().To<CompanyRepository>().WithConstructorArgument("conn", "Mvc4DDD");
+        }
+    }
+
+    // Provides a Ninject implementation of IDependencyScope
+    // which resolves services using the Ninject container.
+    public class NinjectDependencyScope : IDependencyScope
+    {
+        IResolutionRoot resolver;
+
+        public NinjectDependencyScope(IResolutionRoot resolver)
+        {
+            this.resolver = resolver;
+        }
+
+        public object GetService(Type serviceType)
+        {
+            if (resolver == null)
+                throw new ObjectDisposedException("this", "This scope has been disposed");
+
+            return resolver.TryGet(serviceType);
+        }
+
+        public System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
+        {
+            if (resolver == null)
+                throw new ObjectDisposedException("this", "This scope has been disposed");
+
+            return resolver.GetAll(serviceType);
+        }
+
+        public void Dispose()
+        {
+            IDisposable disposable = resolver as IDisposable;
+            if (disposable != null)
+                disposable.Dispose();
+
+            resolver = null;
+        }
+    }
+
+    // This class is the resolver, but it is also the global scope
+    // so we derive from NinjectScope.
+    public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
+    {
+        IKernel kernel;
+
+        public NinjectDependencyResolver(IKernel kernel)
+            : base(kernel)
+        {
+            this.kernel = kernel;
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return new NinjectDependencyScope(kernel.BeginBlock());
         }
     }
 }

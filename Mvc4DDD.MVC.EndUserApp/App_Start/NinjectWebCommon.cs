@@ -71,13 +71,13 @@ namespace Mvc4DDD.MVC.EndUserApp.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof (IAppServiceBase<>)).To(typeof (AppServiceBase<>));
+            kernel.Bind(typeof (IAppServiceBase<>)).To(typeof (AppServiceBase<>)); //Using typeof because TEntity is generic.
             kernel.Bind<ICompanyAppService>().To<CompanyAppService>();
 
-            kernel.Bind(typeof (IServiceBase<>)).To(typeof (ServiceBase<>));
+            kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>)); //Using typeof because TEntity is generic.
             kernel.Bind<ICompanyService>().To<CompanyService>();
 
-            kernel.Bind(typeof (IRepositoryBase<>)).To(typeof (RepositoryBase<>));
+            kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>)); //Using typeof because TEntity is generic.
             
             kernel.Bind<ICompanyRepository>().To<CompanyRepository>()
                 .WithConstructorArgument("conn", ConnectionStringHelper.GetConnectionString());

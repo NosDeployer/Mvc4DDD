@@ -10,6 +10,10 @@ using Mvc4DDD.Domain.Interfaces.Repositories;
 
 namespace Mvc4DDD.Data.Repositories
 {
+    /// <summary>
+    /// Just the default CRUD.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
         protected Mvc4DDDContext Db;

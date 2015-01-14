@@ -41,27 +41,22 @@ namespace Mvc4DDD.MVC.EndUserApp.ViewModels
         [Required]
         public String YCoord { get; set; }
 
-        //[Required]
         [DisplayName("Main Phone")]
         public String MainPhone { get; set; }
 
-        //[Required]
+        [DisplayName("Fax")]
         public String Fax { get; set; }
 
-        //[Required]
         [DisplayName("Additional Phones")]
         public String AdditionalPhones { get; set; }
 
-        //[Required]
         [DisplayName("Opening Hours")]
         public String OpeningHours { get; set; }
 
-        //[Required]
         [EmailAddress]
         [DisplayName("Email")]
         public String EmailAddress { get; set; }
 
-        //[Required]
         [DisplayName("Website")]
         public String WWW { get; set; }
 
@@ -73,15 +68,12 @@ namespace Mvc4DDD.MVC.EndUserApp.ViewModels
         [DisplayName("Category")]
         public String CategoryName { get; set; }
 
-        //[Required]
         [DisplayName("Description")]
         public String DescriptionEn { get; set; }
 
-        //[Required]
         [DisplayName("Keywords")]
         public String KeywordsEn { get; set; }
 
-        //[Required]
         [DisplayName("Trademarks")]
         public String TrademarksEn { get; set; }
     }

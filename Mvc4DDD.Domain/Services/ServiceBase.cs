@@ -8,6 +8,10 @@ using Mvc4DDD.Domain.Interfaces.Services;
 
 namespace Mvc4DDD.Domain.Services
 {
+    /// <summary>
+    /// Just the default CRUD.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
     {
         private readonly IRepositoryBase<TEntity> _repository;

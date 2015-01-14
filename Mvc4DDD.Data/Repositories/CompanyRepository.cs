@@ -15,11 +15,19 @@ namespace Mvc4DDD.Data.Repositories
         {
         }
 
+        /// <summary>
+        /// Returns all distinct countries.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetCountries()
         {
             return Db.Companies.Select(c => c.Country).Distinct().ToList();
         }
 
+        /// <summary>
+        /// Returns a dictionary with Category's code and Category's name.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetCategories()
         {
             return Db.Companies.Select(c => new {Category = c.CategoryCode, Name = c.CategoryName})
@@ -27,11 +35,21 @@ namespace Mvc4DDD.Data.Repositories
                 .ToDictionary(arg => arg.Category, arg => arg.Name);
         }
 
+        /// <summary>
+        /// Returns all companies based on their country.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public IEnumerable<Company> GetByLocation(string location)
         {
             return Db.Companies.Where(c => c.Country.Equals(location)).ToList();
         }
 
+        /// <summary>
+        /// Returns all companies based on their category.
+        /// </summary>
+        /// <param name="categoryCode"></param>
+        /// <returns></returns>
         public IEnumerable<Company> GetByCategory(string categoryCode)
         {
             return Db.Companies.Where(c => c.CategoryCode.Equals(categoryCode));

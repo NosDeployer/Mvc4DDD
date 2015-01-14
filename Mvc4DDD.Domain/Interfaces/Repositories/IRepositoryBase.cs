@@ -2,6 +2,10 @@
 
 namespace Mvc4DDD.Domain.Interfaces.Repositories
 {
+    /// <summary>
+    /// Just the default CRUD.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public interface IRepositoryBase<TEntity> where TEntity : class 
     {
         void Add(TEntity obj);

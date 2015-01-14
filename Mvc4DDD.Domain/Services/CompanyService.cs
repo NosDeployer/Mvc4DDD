@@ -19,21 +19,39 @@ namespace Mvc4DDD.Domain.Services
             _companyRepository = companyRepository;
         }
 
+        /// <summary>
+        /// Returns all distinct countries.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetCountries()
         {
             return _companyRepository.GetCountries();
         }
 
+        /// <summary>
+        /// Returns a dictionary with Category's code and Category's name.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetCategories()
         {
             return _companyRepository.GetCategories();
         }
 
+        /// <summary>
+        /// Returns all companies based on their country.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public IEnumerable<Company> GetByLocation(string location)
         {
             return _companyRepository.GetByLocation(location);
         }
 
+        /// <summary>
+        /// Returns all companies based on their category.
+        /// </summary>
+        /// <param name="categoryCode"></param>
+        /// <returns></returns>
         public IEnumerable<Company> GetByCategory(string categoryCode)
         {
             return _companyRepository.GetByCategory(categoryCode);
