@@ -19,9 +19,9 @@ namespace Mvc4DDD.Application.Apps
             _companyService = companyService;
         }
 
-        public IEnumerable<string> GetCountries()
+        public IEnumerable<string> GetCities()
         {
-            return _companyService.GetCountries();
+            return _companyService.GetCities();
         }
 
         public Dictionary<string, string> GetCategories()

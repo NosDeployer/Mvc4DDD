@@ -16,12 +16,12 @@ namespace Mvc4DDD.Data.Repositories
         }
 
         /// <summary>
-        /// Returns all distinct countries.
+        /// Returns all distinct cities.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetCountries()
+        public IEnumerable<string> GetCities()
         {
-            return Db.Companies.Select(c => c.County).Distinct().ToList();
+            return Db.Companies.Select(c => c.City).Distinct().ToList();
         }
 
         /// <summary>
@@ -36,13 +36,13 @@ namespace Mvc4DDD.Data.Repositories
         }
 
         /// <summary>
-        /// Returns all companies based on their country.
+        /// Returns all companies based on their city.
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
         public IEnumerable<Company> GetByLocation(string location)
         {
-            return Db.Companies.Where(c => c.County.Equals(location)).ToList();
+            return Db.Companies.Where(c => c.City.Equals(location)).ToList();
         }
 
         /// <summary>

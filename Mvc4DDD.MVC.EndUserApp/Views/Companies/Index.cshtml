@@ -18,7 +18,7 @@
                     </th>
                 </tr>
 
-                @foreach (var item in Model.Select(c => c.County).Distinct())
+                @foreach (var item in Model.Select(c => c.City).Distinct().OrderBy(c => c))
                 {
                     <tr>
                         <td>
@@ -41,6 +41,7 @@
 
                 @foreach (var item in Model.Select(c => new {cat = c.CategoryCode, name = c.CategoryName})
                     .Distinct()
+                    .OrderBy(c => c.name)
                     .ToDictionary(arg => arg.cat, arg => arg.name))
                 {
                     <tr>

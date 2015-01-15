@@ -20,12 +20,12 @@ namespace Mvc4DDD.Domain.Services
         }
 
         /// <summary>
-        /// Returns all distinct countries.
+        /// Returns all distinct cities.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetCountries()
+        public IEnumerable<string> GetCities()
         {
-            return _companyRepository.GetCountries();
+            return _companyRepository.GetCities();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mvc4DDD.Domain.Services
         }
 
         /// <summary>
-        /// Returns all companies based on their country.
+        /// Returns all companies based on their city.
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>

@@ -21,7 +21,7 @@ namespace Mvc4DDD.MVC.EndUserApp.Controllers
 
         public ActionResult RenderMenu()
         {
-            var countries = _companyApp.GetCountries();
+            var countries = _companyApp.GetCities();
             var categories = _companyApp.GetCategories();
             
             ViewBag.countries = countries;

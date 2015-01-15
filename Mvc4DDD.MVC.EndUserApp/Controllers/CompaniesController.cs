@@ -48,7 +48,7 @@ namespace Mvc4DDD.MVC.EndUserApp.Controllers
 
         /// <summary>
         /// It's receiving the original name because the database doesn't 
-        /// have an ID for countries and find by SEO String on database does not
+        /// have an ID for cities and find by SEO String on database does not
         /// have a good performance.
         /// </summary>
         /// <param name="location"></param>

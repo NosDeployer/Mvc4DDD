@@ -10,10 +10,10 @@ namespace Mvc4DDD.Application.Interfaces
     public interface ICompanyAppService : IAppServiceBase<Company>
     {
         /// <summary>
-        /// Returns all distinct countries.
+        /// Returns all distinct cities.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<String> GetCountries();
+        IEnumerable<String> GetCities();
 
         /// <summary>
         /// Returns a dictionary with Category's code and Category's name.
@@ -22,7 +22,7 @@ namespace Mvc4DDD.Application.Interfaces
         Dictionary<String, String> GetCategories();
 
         /// <summary>
-        /// Returns all companies based on their country.
+        /// Returns all companies based on their city.
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
