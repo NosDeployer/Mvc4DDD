@@ -43,7 +43,7 @@
                 <p>
                     <h4>@Html.DisplayNameFor(model => model.MainPhone)</h4>
                 </p>
-                <p>@Html.DisplayFor(model => model.MainPhone).ToString().AddHyphenIfEmpty()</p>
+                <p id="mainPhone">@Html.DisplayFor(model => model.MainPhone).ToString().AddHyphenIfEmpty()</p>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                 <p>
                     <h4>@Html.DisplayNameFor(model => model.Fax)</h4>
                 </p>
-                <p>@Html.DisplayFor(model => model.Fax).ToString().AddHyphenIfEmpty()</p>
+                <p id="fax">@Html.DisplayFor(model => model.Fax).ToString().AddHyphenIfEmpty()</p>
             </div>
             <div class="col-md-4">
                 <p>
@@ -80,13 +80,13 @@
                 <p>
                     <h4>@Html.DisplayNameFor(model => model.AdditionalPhones)</h4>
                 </p>
-                <p>@Html.DisplayFor(model => model.AdditionalPhones).ToString().AddHyphenIfEmpty()</p>
+                <p id="addPhones">@Html.DisplayFor(model => model.AdditionalPhones).ToString().AddHyphenIfEmpty()</p>
             </div>
             <div class="col-md-4">
                 <p>
                     <h4>@Html.DisplayNameFor(model => model.OpeningHours)</h4>
                 </p>
-                <p>
+                <p id="openingH">
                     @Html.DisplayFor(model => model.OpeningHours).ToString().AddHyphenIfEmpty()
                 </p>
             </div>
