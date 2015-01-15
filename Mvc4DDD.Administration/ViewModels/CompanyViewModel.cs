@@ -34,7 +34,7 @@ namespace Mvc4DDD.Administration.ViewModels
         public String City { get; set; }
 
         [Required]
-        public String Country { get; set; }
+        public String County { get; set; }
 
         [Required]
         public String XCoord { get; set; }

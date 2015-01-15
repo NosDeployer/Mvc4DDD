@@ -54,7 +54,7 @@ namespace Mvc4DDD.Domain.Entities
 
         public String City { get; set; }
 
-        public String Country { get; set; }
+        public String County { get; set; }
 
         public String XCoord { get; set; }
 

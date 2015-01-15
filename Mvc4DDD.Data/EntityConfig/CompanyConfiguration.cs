@@ -32,7 +32,7 @@ namespace Mvc4DDD.Data.EntityConfig
             Property(c => c.City)
                 .IsRequired();
 
-            Property(c => c.Country)
+            Property(c => c.County)
                 .IsRequired();
 
              Property(c => c.XCoord)

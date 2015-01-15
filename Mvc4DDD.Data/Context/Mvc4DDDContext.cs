@@ -22,6 +22,12 @@ namespace Mvc4DDD.Data.Context
             // The default connection String (Mvc4DDD) is saved on Mvc4DDD.Administration Web.config.
         }
 
+        public Mvc4DDDContext()
+            : base("Mvc4DDD")
+        {
+            // Used by EF.
+        }
+
         public DbSet<Company> Companies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

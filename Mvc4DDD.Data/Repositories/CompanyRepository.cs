@@ -21,7 +21,7 @@ namespace Mvc4DDD.Data.Repositories
         /// <returns></returns>
         public IEnumerable<string> GetCountries()
         {
-            return Db.Companies.Select(c => c.Country).Distinct().ToList();
+            return Db.Companies.Select(c => c.County).Distinct().ToList();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Mvc4DDD.Data.Repositories
         /// <returns></returns>
         public IEnumerable<Company> GetByLocation(string location)
         {
-            return Db.Companies.Where(c => c.Country.Equals(location)).ToList();
+            return Db.Companies.Where(c => c.County.Equals(location)).ToList();
         }
 
         /// <summary>
